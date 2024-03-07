@@ -75,8 +75,11 @@ public class SecurityConfig {
             //Required for error responses
             .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll()
 
-            // Allow users to post new recipes
+            // Allow users to post, put and delete  recipes
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,"/recipes")).hasAuthority("USER")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.PUT,"/recipes")).hasAuthority("USER")
+            .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.DELETE,"/recipes")).hasAuthority("USER")
+
 
             //Allow admin to create a new category
             .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,"/categories")).hasAuthority("ADMIN")
